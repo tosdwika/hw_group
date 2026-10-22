@@ -450,6 +450,228 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "BUKU",
+            "item": [
+                {
+                    "name": "GET ALL",
+                    "description": "Ambil semua buku",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/buku?page=1&per_page=10",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "buku"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Nomor halaman"
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "10",
+                                    "description": "Jumlah data per halaman"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "GET SINGLE",
+                    "description": "Ambil detail buku by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/buku/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "buku",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "CREATE",
+                    "description": "Tambah buku baru",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"kategori_buku_id\": 1,\n    \"judul\": \"Sapiens: Riwayat Singkat Umat Manusia\",\n    \"penulis\": \"Yuval Noah Harari\",\n    \"penerbit\": \"Kepustakaan Populer Gramedia\",\n    \"tahun_terbit\": 2011,\n    \"deskripsi\": \"Eksplorasi sejarah dan evolusi manusia.\",\n    \"stok\": 10\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/buku",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "buku"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "UPDATE - PUT",
+                    "description": "Update semua data buku by ID",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"kategori_buku_id\": 1,\n    \"judul\": \"Sapiens: Edisi Grafis\",\n    \"penulis\": \"Yuval Noah Harari\",\n    \"penerbit\": \"Kepustakaan Populer Gramedia\",\n    \"tahun_terbit\": 2020,\n    \"deskripsi\": \"Adaptasi komik grafis dari buku Sapiens.\",\n    \"stok\": 12\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/buku/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "buku",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "UPDATE - PATCH",
+                    "description": "Update sebagian field buku by ID",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"judul\": \"Sapiens (Revisi 2026)\",\n    \"tahun_terbit\": 2026,\n    \"stok\": 15\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/buku/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "buku",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "DELETE",
+                    "description": "Hapus buku by ID",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/buku/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "buku",
+                                "1"
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     ]
 }

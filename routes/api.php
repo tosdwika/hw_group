@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KategoriBukuController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,4 +13,5 @@ Route::prefix('auth')->group(function () {
     Route::get('/me', [AuthController::class, 'me'])->middleware('auth:api');
 });
 
+Route::apiResource('buku', BukuController::class)->middleware('auth:api');
 Route::apiResource('kategori-buku', KategoriBukuController::class)->middleware('auth:api');
