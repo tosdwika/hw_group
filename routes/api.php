@@ -16,4 +16,8 @@ Route::prefix('auth')->group(function () {
 
 Route::apiResource('buku', BukuController::class)->middleware('auth:api');
 Route::apiResource('kategori-buku', KategoriBukuController::class)->middleware('auth:api');
-Route::apiResource('peminjaman', PeminjamanController::class)->middleware('auth:api');
+
+Route::middleware('auth:api')->group(function () {
+    Route::post('peminjaman/{id}/kembalikan', [PeminjamanController::class, 'kembalikan']);
+    Route::apiResource('peminjaman', PeminjamanController::class);
+});

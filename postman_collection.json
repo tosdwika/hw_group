@@ -894,6 +894,53 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "PENGEMBALIAN",
+            "item": [
+                {
+                    "name": "PENGEMBALIAN BUKU",
+                    "description": "Pengembalian buku transaksi peminjaman (otomatis tambah stok buku)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"tanggal_kembali\": \"2026-10-22\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/peminjaman/1/kembalikan",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "peminjaman",
+                                "1",
+                                "kembalikan"
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     ]
 }

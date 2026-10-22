@@ -24,6 +24,44 @@ class PeminjamanController extends Controller
         ], 200);
     }
 
+    // Memproses pengembalian buku dan menambah stok buku
+    public function kembalikan(Request $request, string $id): JsonResponse
+    {
+        $peminjaman = Peminjaman::find($id);
+
+        if (! $peminjaman) {
+            return response()->json([
+                'message' => 'Data peminjaman tidak ditemukan',
+            ], 404);
+        }
+
+        if ($peminjaman->status === 'dikembalikan') {
+            return response()->json([
+                'message' => 'Buku sudah dikembalikan sebelumnya',
+            ], 400);
+        }
+
+        $validated = $request->validate([
+            'tanggal_kembali' => ['nullable', 'date'],
+        ]);
+
+        $tanggalKembali = $validated['tanggal_kembali'] ?? now()->toDateString();
+
+        DB::transaction(function () use ($peminjaman, $tanggalKembali) {
+            Buku::where('id', $peminjaman->buku_id)->increment('stok');
+
+            $peminjaman->update([
+                'status' => 'dikembalikan',
+                'tanggal_kembali' => $tanggalKembali,
+            ]);
+        });
+
+        return response()->json([
+            'message' => 'Buku berhasil dikembalikan',
+            'data' => $peminjaman->fresh()->load(['user:id,name,email', 'buku']),
+        ], 200);
+    }
+
     // Menyimpan transaksi peminjaman baru dan mengurangi stok buku
     public function store(Request $request): JsonResponse
     {
