@@ -18,6 +18,7 @@ Route::apiResource('buku', BukuController::class)->middleware('auth:api');
 Route::apiResource('kategori-buku', KategoriBukuController::class)->middleware('auth:api');
 
 Route::middleware('auth:api')->group(function () {
+    Route::get('peminjaman/dipinjam', [PeminjamanController::class, 'bukuDipinjam']);
     Route::post('peminjaman/{id}/kembalikan', [PeminjamanController::class, 'kembalikan']);
     Route::apiResource('peminjaman', PeminjamanController::class);
 });

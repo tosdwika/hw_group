@@ -941,6 +941,51 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "DAFTAR PEMINJAMAN",
+            "item": [
+                {
+                    "name": "DAFTAR BUKU DIPINJAM",
+                    "description": "Ambil daftar buku yang sedang dipinjam (status: dipinjam)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/peminjaman/dipinjam?page=1&per_page=10",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "peminjaman",
+                                "dipinjam"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Nomor halaman"
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "10",
+                                    "description": "Jumlah data per halaman"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     ]
 }

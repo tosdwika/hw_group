@@ -24,6 +24,25 @@ class PeminjamanController extends Controller
         ], 200);
     }
 
+    // Menampilkan daftar buku yang sedang dipinjam
+    public function bukuDipinjam(Request $request): JsonResponse
+    {
+        $perPage = $request->integer('per_page', 10) ?: 10;
+        $query = Peminjaman::with(['user:id,name,email', 'buku.kategori'])
+            ->where('status', 'dipinjam');
+
+        if ($request->filled('user_id')) {
+            $query->where('user_id', $request->input('user_id'));
+        }
+
+        $peminjaman = $query->latest('id')->paginate($perPage);
+
+        return response()->json([
+            'message' => 'Berhasil mengambil daftar buku yang sedang dipinjam',
+            'data' => $peminjaman,
+        ], 200);
+    }
+
     // Memproses pengembalian buku dan menambah stok buku
     public function kembalikan(Request $request, string $id): JsonResponse
     {
