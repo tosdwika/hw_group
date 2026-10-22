@@ -16,7 +16,7 @@ REST API dibuat dengan Laravel dan PostgreSQL. Lewat API ini Anda bisa mengelola
 10. [Pengembalian buku](#pengembalian-buku)
 11. [Buku yang sedang dipinjam](#buku-yang-sedang-dipinjam)
 12. [Arti kode status](#arti-kode-status)
-13. [Kalau ada masalah](#kalau-ada-masalah)
+13. [Petunjuk Penanganan Respon Error](#petunjuk-penanganan-respon-error)
 
 ## Cara kerja singkat
 
